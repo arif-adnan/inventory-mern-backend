@@ -1,5 +1,5 @@
-const DataModel = require('../../models/user/UserModel');
-const OTPSModel = require("../../models/user/OTPSModel");
+const DataModel = require('../../models/Users/UserModel');
+const OTPSModel = require("../../models/Users/OTPSModel");
 
 const UserCreateService = require("../../services/user/UserCreateService");
 const UserLoginService = require("../../services/user/UserLoginService");
