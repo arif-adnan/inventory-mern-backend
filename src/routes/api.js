@@ -6,6 +6,11 @@ const CategoriesController = require("../controllers/Categories/CategoriesContro
 const CustomersController = require("../controllers/Customers/CustomersController");
 const SuppliersController = require("../controllers/Suppliers/SuppliersController");
 const ExpenseTypesController = require("../controllers/Expenses/ExpenseTypesController");
+const ExpensesController = require("../controllers/Expenses/ExpensesController");
+const ProductsController = require("../controllers/Products/ProductsController");
+const PurchasesController = require("../controllers/Purchases/PurchasesController");
+const SalesController = require("../controllers/Sales/SalesController");
+const ReturnsController = require("../controllers/Returns/ReturnsController");
 
 const router = express.Router();
 
@@ -59,6 +64,33 @@ router.post("/UpdateExpenseTypes/:id",AuthVerifyMiddleware,ExpenseTypesControlle
 router.get("/ExpenseTypesList/:pageNo/:perPage/:searchKeyword",AuthVerifyMiddleware,ExpenseTypesController.ExpenseTypesList);
 router.get("/ExpenseTypesDropDown",AuthVerifyMiddleware,ExpenseTypesController.ExpenseTypesDropDown);
 
+
+// Expenses
+router.post("/CreateExpenses",AuthVerifyMiddleware,ExpensesController.CreateExpenses);
+router.post("/UpdateExpenses/:id",AuthVerifyMiddleware,ExpensesController.UpdateExpenses);
+router.get("/ExpensesList/:pageNo/:perPage/:searchKeyword",AuthVerifyMiddleware,ExpensesController.ExpensesList);
+
+
+// Products
+router.post("/CreateProducts",AuthVerifyMiddleware,ProductsController.CreateProducts);
+router.post("/UpdateProducts/:id",AuthVerifyMiddleware,ProductsController.UpdateProducts);
+router.get("/ProductsList/:pageNo/:perPage/:searchKeyword",AuthVerifyMiddleware,ProductsController.ProductsList);
+router.get("/ProductsDropDown",AuthVerifyMiddleware,ProductsController.ProductsDropDown);
+
+
+//Purchases
+router.post("/CreatePurchases",AuthVerifyMiddleware,PurchasesController.CreatePurchases);
+router.get("/PurchasesList/:pageNo/:perPage/:searchKeyword",AuthVerifyMiddleware,PurchasesController.PurchasesList);
+
+
+//Sales
+router.post("/CreateSales",AuthVerifyMiddleware,SalesController.CreateSales);
+router.get("/SalesList/:pageNo/:perPage/:searchKeyword",AuthVerifyMiddleware,SalesController.SalesList);
+
+
+//Return
+router.post("/CreateReturns",AuthVerifyMiddleware,ReturnsController.CreateReturns);
+router.get("/ReturnsList/:pageNo/:perPage/:searchKeyword",AuthVerifyMiddleware,ReturnsController.ReturnsList);
 
 
 
