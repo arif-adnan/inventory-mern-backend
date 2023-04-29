@@ -11,6 +11,8 @@ const DetailsByIDService = require("../../services/common/DetailsByIDService");
 
 
 
+
+
 exports.CreateBrand=async (req, res) => {
     let Result= await CreateService(req,DataModel)
     res.status(200).json(Result)
