@@ -3,6 +3,13 @@ const CreateService = require("../../services/common/CreateService");
 const UpdateService = require("../../services/common/UpdateService");
 const DropDownService = require("../../services/common/DropDownService");
 const ListTwoJoinService = require("../../services/common/ListTwoJoinService");
+const mongoose = require("mongoose");
+const CheckAssociateService = require("../../services/common/CheckAssociateService");
+const ReturnProductsModel = require("../../models/Returns/ReturnProductsModel");
+const PurchaseProductsModel = require("../../models/Purchases/PurchaseProductsModel");
+const SaleProductsModel = require("../../models/Sales/SaleProductsModel");
+const DeleteService = require("../../services/common/DeleteService");
+const DetailsByIDService = require("../../services/common/DetailsByIDService");
 
 
 exports.CreateProducts=async (req, res) => {
@@ -26,11 +33,43 @@ exports.ProductsList=async (req, res) => {
 }
 
 
+exports.ProductsDetailsByID=async (req, res) => {
+    let Result= await DetailsByIDService(req,DataModel)
+    res.status(200).json(Result)
+}
+
 
 
 exports.ProductsDropDown=async (req, res) => {
     let Result= await DropDownService(req,DataModel,{_id:1,Name:1})
     res.status(200).json(Result)
 }
+
+
+exports.DeleteProduct=async (req, res) => {
+    let DeleteID=req.params.id;
+    const ObjectId = mongoose.Types.ObjectId;
+
+    let CheckReturnAssociate= await CheckAssociateService({ProductID:ObjectId(DeleteID)},ReturnProductsModel);
+    let CheckPurchaseAssociate= await CheckAssociateService({ProductID:ObjectId(DeleteID)},PurchaseProductsModel);
+    let CheckSaleAssociate= await CheckAssociateService({ProductID:ObjectId(DeleteID)},SaleProductsModel);
+
+    if(CheckReturnAssociate){
+        res.status(200).json({status: "associate", data: "Associate with Return"})
+    }
+    else if(CheckPurchaseAssociate){
+        res.status(200).json({status: "associate", data: "Associate with Purchase"})
+    }
+    else if(CheckSaleAssociate){
+        res.status(200).json({status: "associate", data: "Associate with Sale"})
+    }
+    else{
+        let Result=await DeleteService(req,DataModel);
+        res.status(200).json(Result)
+    }
+}
+
+
+
 
 
