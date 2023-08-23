@@ -4,7 +4,12 @@
 /node_modules
 /.pnp
 .pnp.js
+.env
+package-lock.json
+.idea/*
 
+images/*
+!images/.gitkeep
 
 # testing
 /coverage
