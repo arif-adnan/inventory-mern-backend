@@ -12,6 +12,9 @@ const xss =require('xss-clean');
 const hpp =require('hpp');
 const cors =require('cors');
 
+const dotenv = require('dotenv');
+dotenv.config();
+
 // Database Lib Import
 const mongoose =require('mongoose');
 
@@ -25,7 +28,6 @@ app.use(hpp())
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb'}));
 
-
 // Body Parser Implement
 app.use(bodyParser.json())
 
@@ -35,7 +37,7 @@ app.use(limiter)
 
 // Mongo DB Database Connection
 let URI = "mongodb+srv://<username>:<password>@cluster0.jqo1zug.mongodb.net/inventory";
-let OPTION={user:'arif007',pass:'arif007',autoIndex:true}
+let OPTION={user: process.env.DBUSER,pass: process.env.DBPASS,autoIndex:true}
 mongoose.set('strictQuery', false).connect(URI,OPTION,(error)=>{
     console.log("Database Connection Success!")
     console.log("Error: "+error)

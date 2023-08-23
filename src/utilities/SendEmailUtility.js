@@ -3,19 +3,19 @@ let nodemailer = require('nodemailer');
 const SendEmailUtility= async (EmailTo, EmailText, EmailSubject) => {
 
     let transporter = nodemailer.createTransport({
-        host: 'mail.teamrabbil.com',
-        port: 25,
+        host: process.env.SENDEMAILHOST,
+        port: process.env.SENDEMAILPORT,
         secure: false,
         auth: {
-            user: "info@teamrabbil.com",
-            pass: '~sR4[bhaC[Qs'
+            user: process.env.SENDEMAILUSER,
+            pass: process.env.SENDEMAILPASS
         },tls: {
             rejectUnauthorized: false
         },
     });
 
     let mailOptions = {
-        from: 'Inventory <info@teamrabbil.com>',
+        from: `Inventory <${process.env.SENDEMAILUSER}>`,
         to: EmailTo,
         subject: EmailSubject,
         text: EmailText

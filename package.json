@@ -1,12 +1,12 @@
 {
-  "name": "mern-task-manager",
+  "name": "inventory-mern-backend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "nodemon index.js"
+    "server": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
