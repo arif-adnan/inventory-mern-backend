@@ -16,6 +16,10 @@ const SummaryController = require("../controllers/Summary/SummaryController");
 
 const router = express.Router();
 
+// testing router
+router.get("/", (req, res) => {
+    res.send("Application running successfully!");
+  });
 
 // Users profile
 router.post("/Registration",UsersController.Registration);
